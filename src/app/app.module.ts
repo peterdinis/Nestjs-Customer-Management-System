@@ -13,7 +13,7 @@ import { CustomersModule } from 'src/customers/customers.module';
       envFilePath: '.env',
     }),
     PrismaModule,
-    CustomersModule
+    CustomersModule,
   ],
   controllers: [AppController],
 })

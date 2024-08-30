@@ -1,73 +1,64 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## NestJS Task Management System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This application is a task management system developed using NestJS. It is designed to handle tasks as specified in the requirements. The `customers` module is integrated with PostgreSQL and utilizes Prisma ORM to perform full CRUD (Create, Read, Update, Delete) operations.
 
-## Description
+### Technologies Used
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **NestJS**: A progressive Node.js framework for building efficient and scalable server-side applications.
+- **PostgreSQL**: A powerful, open-source relational database system.
+- **Prisma ORM**: An advanced ORM for Node.js and TypeScript that simplifies database interactions.
 
-## Installation
+### Setup
 
-```bash
-$ pnpm install
-```
+1. **Clone the repository**:
 
-## Running the app
+    ```bash
+    git clone https://github.com/peterdinis/Nestjs-Customer-Management-System.git
+    ```
 
-```bash
-# development
-$ pnpm run start
+2. **Install dependencies**:
 
-# watch mode
-$ pnpm run start:dev
+    Navigate to the project directory and install the required packages:
 
-# production mode
-$ pnpm run start:prod
-```
+    ```bash
+    cd your-project-directory
+    pnpm install
+    ```
 
-## Test
+3. **Configure Environment Variables**:
 
-```bash
-# unit tests
-$ pnpm run test
+    Create a `.env` file in the root directory and add your PostgreSQL database connection details:
 
-# e2e tests
-$ pnpm run test:e2e
+    ```
+    DATABASE_URL=postgresql://user:password@localhost:5432/mydatabase
+    PORT=your port number
+    ```
 
-# test coverage
-$ pnpm run test:cov
-```
+4. **Run Database Migrations**:
 
-## Support
+    Apply Prisma migrations to set up your database schema:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+    ```bash
+    pnpm prisma migrate dev
+    ```
 
-## Stay in touch
+5. **Start the Application**:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+    Run the application in development mode:
 
-## License
+    ```bash
+    pnpm run start:dev
+    ```
 
-Nest is [MIT licensed](LICENSE).
+   Run tests:
+    ```bash
+    pnpm run test
+    ```
+
+    For production, use:
+
+    ```bash
+    pnpm run start:prod
+    ```

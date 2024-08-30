@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DataService} from 'src/data/data.service';
+import { DataService } from 'src/data/data.service';
 import { AppController } from '../app.controller';
 import { CustomerType } from 'src/types/CustomerType';
 
@@ -14,19 +14,29 @@ describe('AppController', () => {
 
   const mockDataService = {
     findAll: jest.fn().mockReturnValue(mockCustomers),
-    findOne: jest.fn().mockImplementation((id: number) => mockCustomers.find(c => c.id === id)),
-    create: jest.fn().mockImplementation((customerData: Omit<CustomerType, 'id'>) => ({
-      id: 3,
-      ...customerData,
-    })),
-    update: jest.fn().mockImplementation((id: number, customerData: Partial<Omit<CustomerType, 'id'>>) => {
-      const customer = mockCustomers.find(c => c.id === id);
-      if (customer) {
-        Object.assign(customer, customerData);
-        return customer;
-      }
-      return undefined;
-    }),
+    findOne: jest
+      .fn()
+      .mockImplementation((id: number) =>
+        mockCustomers.find((c) => c.id === id),
+      ),
+    create: jest
+      .fn()
+      .mockImplementation((customerData: Omit<CustomerType, 'id'>) => ({
+        id: 3,
+        ...customerData,
+      })),
+    update: jest
+      .fn()
+      .mockImplementation(
+        (id: number, customerData: Partial<Omit<CustomerType, 'id'>>) => {
+          const customer = mockCustomers.find((c) => c.id === id);
+          if (customer) {
+            Object.assign(customer, customerData);
+            return customer;
+          }
+          return undefined;
+        },
+      ),
   };
 
   beforeEach(async () => {
@@ -65,7 +75,11 @@ describe('AppController', () => {
   it('should update an existing customer', () => {
     const updatedData = { name: 'John Updated' };
     const updatedCustomer = appController.update(1, updatedData);
-    expect(updatedCustomer).toEqual({ id: 1, name: 'John Updated', email: 'john.doe@example.com' });
+    expect(updatedCustomer).toEqual({
+      id: 1,
+      name: 'John Updated',
+      email: 'john.doe@example.com',
+    });
     expect(dataService.update).toHaveBeenCalledWith(1, updatedData);
   });
 });

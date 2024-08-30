@@ -5,7 +5,7 @@ import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
 
 dotenv.config({
-  path: ".env"
+  path: '.env',
 });
 
 async function bootstrap() {
@@ -16,12 +16,12 @@ async function bootstrap() {
     .setTitle('Customer Management API')
     .setDescription('API for managing customers')
     .setVersion('1.0')
-    .build(); 
-  
+    .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  const port = configService.get("PORT");
+  const port = configService.get('PORT');
   await app.listen(port);
 }
 bootstrap();

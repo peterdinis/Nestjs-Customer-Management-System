@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { faker } from '@faker-js/faker';
 import { CustomerType } from 'src/types/CustomerType';
 import { validateDtoFields } from 'src/utils/dto-check';
@@ -26,7 +30,9 @@ export class DataService {
   }
 
   findOne(id: number): CustomerType {
-    const customer = this.customers.find(customer => customer.id === Number(id));
+    const customer = this.customers.find(
+      (customer) => customer.id === Number(id),
+    );
     if (!customer) {
       throw new NotFoundException(`Customer with ID ${id} not found.`);
     }
@@ -46,7 +52,10 @@ export class DataService {
     return newCustomer;
   }
 
-  update(id: number, customerData: Partial<Omit<CustomerType, 'id'>>): CustomerType {
+  update(
+    id: number,
+    customerData: Partial<Omit<CustomerType, 'id'>>,
+  ): CustomerType {
     // Validate that only allowed fields are present in customerData
     validateDtoFields(customerData, ['name', 'email']);
 

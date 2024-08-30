@@ -41,7 +41,10 @@ describe('CustomersController', () => {
 
   describe('create', () => {
     it('should create a customer', async () => {
-      const createCustomerDto: CreateCustomerDto = { name: 'John Doe', email: 'john.doe@example.com' };
+      const createCustomerDto: CreateCustomerDto = {
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+      };
       expect(await controller.create(createCustomerDto)).toEqual(mockCustomer);
       expect(service.create).toHaveBeenCalledWith(createCustomerDto);
     });
@@ -63,8 +66,13 @@ describe('CustomersController', () => {
 
   describe('update', () => {
     it('should update a customer', async () => {
-      const updateCustomerDto: UpdateCustomerDto = { name: 'John Smith', email: 'john.smith@example.com' };
-      expect(await controller.update(1, updateCustomerDto)).toEqual(mockCustomer);
+      const updateCustomerDto: UpdateCustomerDto = {
+        name: 'John Smith',
+        email: 'john.smith@example.com',
+      };
+      expect(await controller.update(1, updateCustomerDto)).toEqual(
+        mockCustomer,
+      );
       expect(service.update).toHaveBeenCalledWith(1, updateCustomerDto);
     });
   });

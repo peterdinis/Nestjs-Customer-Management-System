@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Customer } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCustomerDto } from './dto/create-customer-dto';
@@ -13,12 +17,12 @@ export class CustomersService {
     validateDtoFields(createCustomerDto, ['name', 'email']);
     const newCustomer = await this.prisma.customer.create({
       data: {
-        ...createCustomerDto
-      }
+        ...createCustomerDto,
+      },
     });
 
     if (!newCustomer) {
-      throw new BadRequestException("Create customer failed");
+      throw new BadRequestException('Create customer failed');
     }
 
     return newCustomer;
@@ -27,7 +31,7 @@ export class CustomersService {
   async findAll(): Promise<Customer[]> {
     const allCustomers = await this.prisma.customer.findMany();
     if (!allCustomers.length) {
-      throw new NotFoundException("No customers found");
+      throw new NotFoundException('No customers found');
     }
 
     return allCustomers;
@@ -36,8 +40,8 @@ export class CustomersService {
   async findOne(id: number): Promise<Customer> {
     const findOneCustomer = await this.prisma.customer.findUnique({
       where: {
-        id: Number(id)
-      }
+        id: Number(id),
+      },
     });
 
     if (!findOneCustomer) {
@@ -47,20 +51,23 @@ export class CustomersService {
     return findOneCustomer;
   }
 
-  async update(id: number, updateCustomerDto: UpdateCustomerDto): Promise<Customer> {
+  async update(
+    id: number,
+    updateCustomerDto: UpdateCustomerDto,
+  ): Promise<Customer> {
     const findOneCustomer = await this.findOne(id);
     validateDtoFields(updateCustomerDto, ['name', 'email']);
     const updateCustomer = await this.prisma.customer.update({
       where: {
-        id: findOneCustomer.id
+        id: findOneCustomer.id,
       },
       data: {
-        ...updateCustomerDto
-      }
+        ...updateCustomerDto,
+      },
     });
 
     if (!updateCustomer) {
-      throw new BadRequestException("Failed to update customer");
+      throw new BadRequestException('Failed to update customer');
     }
 
     return updateCustomer;
@@ -70,12 +77,12 @@ export class CustomersService {
     const findOneCustomer = await this.findOne(id);
     const deleteCustomer = await this.prisma.customer.delete({
       where: {
-        id: findOneCustomer.id
-      }
+        id: findOneCustomer.id,
+      },
     });
 
     if (!deleteCustomer) {
-      throw new BadRequestException("Failed to delete customer");
+      throw new BadRequestException('Failed to delete customer');
     }
 
     return deleteCustomer;

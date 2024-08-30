@@ -41,7 +41,10 @@ describe('CustomersService', () => {
 
   describe('create', () => {
     it('should create a customer', async () => {
-      const createCustomerDto = { name: 'John Doe', email: 'john.doe@example.com' };
+      const createCustomerDto = {
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+      };
       expect(await service.create(createCustomerDto)).toEqual(mockCustomer);
       expect(prismaService.customer.create).toHaveBeenCalledWith({
         data: createCustomerDto,
@@ -67,7 +70,10 @@ describe('CustomersService', () => {
 
   describe('update', () => {
     it('should update a customer', async () => {
-      const updateCustomerDto = { name: 'John Smith', email: 'john.smith@example.com' };
+      const updateCustomerDto = {
+        name: 'John Smith',
+        email: 'john.smith@example.com',
+      };
       expect(await service.update(1, updateCustomerDto)).toEqual(mockCustomer);
       expect(prismaService.customer.update).toHaveBeenCalledWith({
         where: { id: 1 },
