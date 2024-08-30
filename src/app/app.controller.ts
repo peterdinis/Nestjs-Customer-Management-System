@@ -83,7 +83,7 @@ export class AppController {
   update(
     @Param('id') id: number,
     @Body() customerData: UpdateCustomerDto,
-  ): ViewCustomerDto{
+  ): ViewCustomerDto {
     return this.dataService.update(id, customerData);
   }
 }

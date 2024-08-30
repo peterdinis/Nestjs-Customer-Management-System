@@ -38,7 +38,7 @@ export class CustomersController {
   @ApiResponse({ status: 404, description: 'Customer not found' })
   @Get('/info/:id')
   async findOne(@Param('id') id: number): Promise<ViewCustomerDto> {
-    return this.customersService.findOne(id); 
+    return this.customersService.findOne(id);
   }
 
   @ApiOperation({ summary: 'Create a customer' })
