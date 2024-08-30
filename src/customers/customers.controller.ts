@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { CustomersService } from './customers.service';
-import { Customer } from '@prisma/client';
 import { CreateCustomerDto } from './dto/create-customer-dto';
 import { UpdateCustomerDto } from './dto/update-customer-dto';
 import { ViewCustomerDto } from './dto/view-customer-dto';
@@ -27,7 +26,7 @@ export class CustomersController {
   })
   @Get('/all')
   async findAll(): Promise<ViewCustomerDto[]> {
-    return this.customersService.findAll(); // Make sure ViewCustomerDto is aligned with Customer from Prisma
+    return this.customersService.findAll();
   }
 
   @ApiOperation({ summary: 'Get a customer by ID' })
@@ -39,7 +38,7 @@ export class CustomersController {
   @ApiResponse({ status: 404, description: 'Customer not found' })
   @Get('/info/:id')
   async findOne(@Param('id') id: number): Promise<ViewCustomerDto> {
-    return this.customersService.findOne(id); // Ensure ViewCustomerDto matches Prisma Customer
+    return this.customersService.findOne(id); 
   }
 
   @ApiOperation({ summary: 'Create a customer' })
@@ -52,7 +51,7 @@ export class CustomersController {
   @Post('/create')
   async create(
     @Body() createCustomerDto: CreateCustomerDto,
-  ): Promise<Customer> {
+  ): Promise<ViewCustomerDto> {
     return this.customersService.create(createCustomerDto);
   }
 
@@ -77,7 +76,7 @@ export class CustomersController {
   async update(
     @Param('id') id: number,
     @Body() updateCustomerDto: UpdateCustomerDto,
-  ): Promise<Customer> {
+  ): Promise<ViewCustomerDto> {
     return this.customersService.update(id, updateCustomerDto);
   }
 
@@ -89,7 +88,7 @@ export class CustomersController {
   })
   @ApiResponse({ status: 404, description: 'Customer not found' })
   @Delete('/remove/:id')
-  async remove(@Param('id') id: number): Promise<Customer> {
+  async remove(@Param('id') id: number): Promise<ViewCustomerDto> {
     return this.customersService.remove(id);
   }
 }

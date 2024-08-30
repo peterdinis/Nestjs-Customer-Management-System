@@ -4,6 +4,8 @@
 
 This application is a task management system developed using NestJS. It is designed to handle tasks as specified in the requirements. The `customers` module is integrated with PostgreSQL and utilizes Prisma ORM to perform full CRUD (Create, Read, Update, Delete) operations.
 
+In App and data module are basic tasks from assigment. In customers module are one extra task from assgiment.
+
 ### Technologies Used
 
 - **NestJS**: A progressive Node.js framework for building efficient and scalable server-side applications.

@@ -57,7 +57,7 @@ export class AppController {
     type: CreateCustomerDto,
   })
   @Post('/create')
-  create(@Body() customerData: CreateCustomerDto): CreateCustomerDto {
+  create(@Body() customerData: CreateCustomerDto): ViewCustomerDto {
     return this.dataService.create(customerData);
   }
 
@@ -83,7 +83,7 @@ export class AppController {
   update(
     @Param('id') id: number,
     @Body() customerData: UpdateCustomerDto,
-  ): UpdateCustomerDto {
+  ): ViewCustomerDto{
     return this.dataService.update(id, customerData);
   }
 }
