@@ -13,9 +13,15 @@ import { DataService } from 'src/data/data.service';
 
 @ApiTags('Customers without database')
 @Controller()
+
 export class AppController {
   constructor(private readonly dataService: DataService) {}
 
+  /**
+   * @summary Get all customers
+   * @description Retrieves a list of all customers.
+   * @returns {ViewCustomerDto[]} Array of customer data.
+   */
   @ApiOperation({ summary: 'Get all customers' })
   @ApiResponse({
     status: 200,
@@ -27,6 +33,13 @@ export class AppController {
     return this.dataService.findAll();
   }
 
+  /**
+   * @summary Get a customer by ID
+   * @description Retrieves a single customer based on the provided ID.
+   * @param {number} id - The ID of the customer to retrieve.
+   * @returns {ViewCustomerDto} Customer data.
+   * @throws {404} Customer not found if the ID does not match any existing customer.
+   */
   @ApiOperation({ summary: 'Get a customer by ID' })
   @ApiParam({ name: 'id', description: 'Customer ID', type: 'number' })
   @ApiResponse({
@@ -40,6 +53,12 @@ export class AppController {
     return this.dataService.findOne(id);
   }
 
+  /**
+   * @summary Create a new customer
+   * @description Creates a new customer with the provided data.
+   * @param {CreateCustomerDto} customerData - The data to create a new customer.
+   * @returns {ViewCustomerDto} The created customer data.
+   */
   @ApiOperation({ summary: 'Create a new customer' })
   @ApiBody({
     description: 'Customer data',
@@ -61,6 +80,14 @@ export class AppController {
     return this.dataService.create(customerData);
   }
 
+  /**
+   * @summary Update an existing customer
+   * @description Updates the details of an existing customer identified by ID.
+   * @param {number} id - The ID of the customer to update.
+   * @param {UpdateCustomerDto} customerData - The updated data for the customer.
+   * @returns {ViewCustomerDto} The updated customer data.
+   * @throws {404} Customer not found if the ID does not match any existing customer.
+   */
   @ApiOperation({ summary: 'Update an existing customer' })
   @ApiParam({ name: 'id', description: 'Customer ID', type: 'number' })
   @ApiBody({
