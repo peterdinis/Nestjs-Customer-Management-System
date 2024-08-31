@@ -112,4 +112,53 @@ describe('AppController', () => {
     // Verify that update was called with the correct ID and data
     expect(dataService.update).toHaveBeenCalledWith(1, updatedData);
   });
+
+  // New test cases:
+
+  /**
+   * Test case: should handle case where customer does not exist when calling `findOne`
+   * @description Verifies that the `findOne` method of `AppController` handles cases where the requested customer ID does not exist.
+   */
+  it('should handle case where customer does not exist when calling findOne', () => {
+    // Call the method with an ID that does not exist
+    const customer = appController.findOne(999);
+    expect(customer).toBeUndefined();
+    // Verify that findOne was called with the correct ID
+    expect(dataService.findOne).toHaveBeenCalledWith(999);
+  });
+
+  /**
+   * Test case: should handle failure when creating a customer
+   * @description Verifies that the `create` method of `AppController` handles errors when customer creation fails.
+   */
+  it('should handle failure when creating a customer', () => {
+    // Simulate failure in create method
+    (dataService.create as jest.Mock).mockImplementationOnce(() => {
+      throw new Error('Creation failed');
+    });
+    
+    // Define new customer data
+    const newCustomer = { name: 'Alice', email: 'alice@example.com' };
+    try {
+      appController.create(newCustomer);
+    } catch (e) {
+      expect(e.message).toBe('Creation failed');
+    }
+    // Verify that create was called with the correct data
+    expect(dataService.create).toHaveBeenCalledWith(newCustomer);
+  });
+
+  /**
+   * Test case: should handle case where updating a non-existent customer
+   * @description Verifies that the `update` method of `AppController` handles cases where the customer to update does not exist.
+   */
+  it('should handle case where updating a non-existent customer', () => {
+    // Define updated customer data
+    const updatedData = { name: 'Non-existent Customer' };
+    // Call the method with an ID that does not exist
+    const updatedCustomer = appController.update(999, updatedData);
+    expect(updatedCustomer).toBeUndefined();
+    // Verify that update was called with the correct ID and data
+    expect(dataService.update).toHaveBeenCalledWith(999, updatedData);
+  });
 });
