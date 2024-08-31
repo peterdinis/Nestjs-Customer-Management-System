@@ -7,7 +7,6 @@ import { faker } from '@faker-js/faker';
 import { CustomerType } from 'src/types/CustomerType';
 import { validateDtoFields } from 'src/utils/dto-check';
 @Injectable()
-
 export class DataService {
   private customers: CustomerType[] = []; // Array to hold customer data
   private counter = 1; // Counter to assign unique IDs to new customers

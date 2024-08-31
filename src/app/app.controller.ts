@@ -13,7 +13,6 @@ import { DataService } from 'src/data/data.service';
 
 @ApiTags('Customers without database')
 @Controller()
-
 export class AppController {
   constructor(private readonly dataService: DataService) {}
 

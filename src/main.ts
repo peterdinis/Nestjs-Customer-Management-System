@@ -22,6 +22,12 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   const port = configService.get('PORT');
+
+  if (!port) {
+    console.error('Error: PORT is not defined in the .env file.');
+    process.exit(1);
+  }
+
   await app.listen(port);
 }
 bootstrap();
